@@ -12,7 +12,7 @@ class createAccountWindow(Screen):
     password = ObjectProperty(None)
 
     def submit(self):
-        if self.namee.text !="" and self.email.text != "" and self.email.text.count("@") ==1 and self.email.text.count(".") >0:
+        if self.namee.text !="" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") >0:
             if self.password != "":
                 db.add_user(self.email.text, self.password.text, self.namee.text)
 
@@ -57,6 +57,7 @@ class MainWindow(Screen):
     n = ObjectProperty(None)
     created = ObjectProperty(None)
     email = ObjectProperty(None)
+    current = ""
 
     def logOut(self):
         sm.current = "login"
@@ -64,7 +65,7 @@ class MainWindow(Screen):
     def on_enter(self, *args):
         password, name, created = db.get_user(self.current)
         self.n.text = "Nome" + name
-        self.email.text = "Email" + email
+        self.email.text = "Email" + self.current
         self.created.text = "Criado dia:" + created
 
 class WindowManager(ScreenManager):
@@ -78,8 +79,8 @@ def invalidLogin():
     pop.open()
 
 def invalidForm():
-    pop = Popup(title='Invalid Form',
-                content=Label(text='Please fill in all inputs with valid information.'),
+    pop = Popup(title='Formulário inválido',
+                content=Label(text='Por favor preencha todos os campos com informações válidas.'),
                 size_hint=(None, None), size=(400, 400)
                 )
     pop.open()
