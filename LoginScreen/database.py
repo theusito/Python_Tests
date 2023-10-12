@@ -1,4 +1,4 @@
-import datatime
+import datetime
 
 class DataBase:
     def __init__(self, filename):
@@ -33,9 +33,9 @@ class DataBase:
             return -1
 
     def validate(self, email, password):
-        if self.get_user(email) != -1
+        if self.get_user(email) != -1:
             return self.users[email][0] == password
-        else
+        else:
             return False
 
     def save(self):
@@ -45,4 +45,4 @@ class DataBase:
 
     @staticmethod
     def get_date():
-        return str(datatime.datatime.now()).split(" ")[0]
+        return str(datetime.datetime.now()).split(" ")[0]
